@@ -1,0 +1,1 @@
+https://www.sitepoint.com/sending-emails-gmail-javascript-api/
