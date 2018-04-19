@@ -1,0 +1,9 @@
+﻿@charset "utf-8";
+/*CSS document for Easy Move website, */
+/*Developed by Roman Shaiko, Qian, DongFan*/
+/*Script date: April 18, 2018*/
+nav {
+    min-height:130px; 
+    height:130px; 
+    background-color:#326898;
+}
