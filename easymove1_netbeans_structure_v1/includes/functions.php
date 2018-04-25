@@ -21,7 +21,25 @@ function loadContent($where, $default='') {
   }
 }
 
-function loadContentFrench($where, $default='') {
+function loadHeaderContent($where, $default='') {
+  // Get the content from the url 
+  // Sanitize it for security reasons
+    $filesToInclude = array();
+    $filesToInclude[]='css/header.php';
+//$html = include
+    $content = filter_input(INPUT_GET, $where, FILTER_SANITIZE_STRING);
+    $default = filter_var($default, FILTER_SANITIZE_STRING);
+    // If there wasn't anything on the url, then use the default
+    $content = (empty($content)) ? $default : $content;
+    // If you found have content, then get it and pass it back
+    if ($content) {
+	// sanitize the data to prevent hacking.
+        $filesToInclude[] = 'css/'.$content.'.php';
+	return $filesToInclude;
+  }
+}
+
+function loadContentEnglish($where, $default='') {
   // Get the content from the url 
   // Sanitize it for security reasons
   $content = filter_input(INPUT_GET, $where, FILTER_SANITIZE_STRING);
@@ -31,7 +49,7 @@ function loadContentFrench($where, $default='') {
   // If you found have content, then get it and pass it back
   if ($content) {
 	// sanitize the data to prevent hacking.
-	$html = include 'content/french/'.$content.'.php';
+	$html = include 'content/en/'.$content.'.php';
 	return $html;
   }
 }

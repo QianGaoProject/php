@@ -18,50 +18,8 @@ require_once 'includes/init.php';
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="css/easymove-md.css" />
-    <style>
-        
-        .o_navbar {
-            margin: 0;
-            min-height: 130px;
-            height: 130px;
-            background-color:rgb(57, 51, 91)
-        }
-        .o_brand {
-            padding: 0 15px 0 0;
-            min-height: 130px
-        }
-        @media (min-width: 768px) {
-            .c_slogan {
-                margin-top: 8px;
-                text-align: left;
-                font-family: myLogoFont;
-                font-size: x-large;
-                font-weight: 500;
-                color: #fff;
-            }
-        }
-        @media (max-width: 767px) {
-            .c_slogan {
-                display:none;
-            }
-        }
-
-        #copyrights {
-            height: 40px;
-            color: black;
-            font-size: 11px;
-            text-align: center;
-            margin: auto;
-            padding-top: 5px;
-        }
-        @font-face {
-            font-family: myLogoFont;
-            src: url('handlee-regular.ttf');
-        }
-
-    </style>
-
-
+    
+    <?php foreach (loadHeaderContent('content','home') as $file ) include_once($file) ?>
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -84,33 +42,35 @@ require_once 'includes/init.php';
                 <a class="navbar-brand o_brand" href="#"><img id="nav_img" src="images/logo.jpg" alt="Easy Logo" height="130" /></a>
             </div>
             <div id="slogan" class="c_slogan">
-                With a competitive price offered, you also have a peace of mind !
+                Pour un déménagement tranquille, efficace et pas cher!
             </div>
             <br />
             <div class="collapse navbar-collapse">
-                
+
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.php?content=home">Home</a></li>
-                   <li><a href="index.php?content=move">Move</a></li>
-                    <li><a href="index.php?content=rates">Rates</a></li>
+                    <li class="active"><a href="index.php?content=home">Accueil</a></li>
+                    <li><a href="index.php?content=move">Déménagement</a></li>
+                    <li><a href="index.php?content=rates">Tarifs</a></li>
                     <li><a href="index.php?content=services">Services</a></li>
-                    <li><a href="index.php?content=about">About</a></li>
+                    <li><a href="index.php?content=about">À propos</a></li>
                     <li><a href="index.php?content=contact">Contact</a></li>
-                    <li><a href ="indexfr.php">French</a> </li>
+                    <li><a href="indexen.php">English</a></li>
                 </ul>
-                
             </div><!--/.nav-collapse -->
 
 
         </div>
-        
     </nav>
+    
     <hr style="margin:10px 0; border-color:rgb(245, 121, 33); border-width:3px" />
-     <div class="container jumbotron">
-            <?php loadContent('content','home'); ?>
-        </div><!-- /.container -->
-    <hr style="margin:10px 0; border-color:rgb(245, 121, 33); border-width:3px" />
-    <footer class="nav navbar o_navbar navbar-bottom navbar-inverse">
+    
+    <div class="container jumbotron">
+        <?php loadContent('content','home'); ?>
+     </div><!-- /.container -->
+    
+     <hr style="margin:10px 0; border-color:rgb(245, 121, 33); border-width:3px" />
+    
+     <footer class="nav navbar o_navbar navbar-bottom navbar-inverse">
         <div class="container container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#footer-menu">
@@ -120,16 +80,14 @@ require_once 'includes/init.php';
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            
-           
             <div id="footer-menu" class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="index.php?content=home">Home</a></li>
-                    <li><a href="index.php?content=move">Move</a></li>
-                    <li><a href="index.php?content=rate">Rates</a></li>
+                    <li class="active"><a href="index.php?content=home">Accueil</a></li>
+                    <li><a href="index.php?content=move">Déménagement</a></li>
+                    <li><a href="index.php?content=rates">Tarifs</a></li>
                     <li><a href="index.php?content=services">Services</a></li>
-                    <li><a href="index.php?content=about">About</a></li>
+                    <li><a href="index.php?content=about">À propos</a></li>
                     <li><a href="index.php?content=contact">Contact</a></li>
                 </ul>
             </div>
@@ -144,7 +102,7 @@ require_once 'includes/init.php';
     <div id="copyrights" class="container ">
         <p>
             2018 Tous droits réservés. Easy Move&nbsp;&nbsp;
-            <br />Developed & Designed by Roman Shaiko, Qian Gao, Dongfan Zhang &nbsp;&nbsp;
+            <br />Développé par Roman Shaiko, Qian Gao, Dongfan Zhang &nbsp;&nbsp;
         </p>
     </div>
     

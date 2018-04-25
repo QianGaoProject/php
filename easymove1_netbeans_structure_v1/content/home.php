@@ -1,12 +1,10 @@
-
-        <div>
-            <h2>Moving company with good reputation, you can trust us!</h2>
+ <div>
+            <h2>Entreprise de déménagement, vous pouvez faire confiance!</h2>
             <p class="lead">
-                We service area of Montreal, Châteauguay and everywhere in Quebec                
+                Service de déménagement à Montréal, Châteauguay et partout au Quebeq
             </p>
             <p>
-                Since 2013, Easy Move offer the best services with a competitive price to our clients in Quebec and the big Montreal island area.
-               
+                Depuis 2013, Easy Move Déménagement à Montreal offre un service de première classe à un prix très compétitif au Québec et dans la région de Montréal.
             </p>
-        </div>
-
+            <a href="index.php?content=estimation"><button class="form-control">Obtenez un devis gratuite</button></a>
+</div>
