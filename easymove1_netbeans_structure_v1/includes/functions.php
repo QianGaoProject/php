@@ -35,8 +35,9 @@ function loadHeaderContent($where, $default='') {
     if ($content) {
 	// sanitize the data to prevent hacking.
         $filesToInclude[] = 'css/'.$content.'.php';
+        $filesToInclude[] = 'js/'.$content.'.php';
 	return $filesToInclude;
-  }
+    }
 }
 
 function loadContentEnglish($where, $default='') {
