@@ -1,4 +1,3 @@
-<div class="container" style="min-width: 350px">
 
     <h1>Estimation in English will come</h1>
     <p>
@@ -286,5 +285,3 @@
 
         </div>
     </form>
-
-</div><!-- /.container -->

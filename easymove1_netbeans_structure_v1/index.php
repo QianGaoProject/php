@@ -66,8 +66,9 @@ require_once 'includes/init.php';
     
     <hr style="margin:10px 0; border-color:rgb(245, 121, 33); border-width:3px" />
     
-        <?php loadContent('content','home'); ?>
-    
+        <div class="container" style="min-width: 350px">
+            <?php loadContent('content','home'); ?>
+        </div><!-- /.container -->
     
      <hr style="margin:10px 0; border-color:rgb(245, 121, 33); border-width:3px" />
     
