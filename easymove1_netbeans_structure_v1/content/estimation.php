@@ -1,4 +1,4 @@
-<div class="container" style="min-width: 350px">
+
 
     <h1>Estimation pour déménagement</h1>
     <p>
@@ -295,4 +295,3 @@
         </div>
     </form>
 
-</div><!-- /.container -->

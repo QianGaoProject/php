@@ -17,6 +17,7 @@ require_once 'includes/init.php';
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
         
+    
     <?php foreach (loadHeaderContent('content','home') as $file ) include_once($file) ?>
     
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -66,7 +67,7 @@ require_once 'includes/init.php';
      
     
     <!--MAIN-->
-    <div class="container jumbotron">
+    <div class="container" style="min-width: 350px">
         <?php loadContentEnglish('content', 'home'); ?>
     </div><!-- /.container -->
 
