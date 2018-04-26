@@ -9,8 +9,8 @@
       <h3>Contact us for more details!</h3>
       
       <div class="row">
-          <div class="col-md-4"><img src='../images/pack (1).jpg'/></div>
-        <div class="col-md-4"><img src='../images/pack (2).jpg'/></div>
-        <div class="col-md-4"><img src='../images/storage (1).jpg'/></div>
+          <div class="col-md-4"><img src='images/pack (1).jpg' width="100%" height="100%"/></div>
+          <div class="col-md-4"><img src='images/pack (2).jpg' width="100%" height="100%"/></div>
+          <div class="col-md-4"><img src='images/storage (1).jpg' width="100%" height="100%"/></div>
       </div>
 

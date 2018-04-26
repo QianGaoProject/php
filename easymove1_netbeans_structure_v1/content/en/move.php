@@ -7,7 +7,7 @@
       <h3>Contact us for more information!</h3>
       
       <div class="row">
-          <div class="col-md-4"><img src='../images/move3 (2).jpg'/></div>
-          <div class="col-md-4"><img src='../images/move3 (3).jpg'/></div>
-          <div class="col-md-4"><img src='../images/move3 (1).jpg'/></div>
+          <div class="col-md-4"><img src='images/move3 (2).jpg' width="100%" height="100%"/></div>
+          <div class="col-md-4"><img src='images/move3 (3).jpg' width='100%' height="100%"/></div>
+          <div class="col-md-4"><img src='images/move3 (1).jpg' width="100%" height="100%"/></div>
       </div>

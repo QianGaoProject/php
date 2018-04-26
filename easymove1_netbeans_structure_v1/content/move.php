@@ -4,14 +4,14 @@
 Lorsque notre équipe de deux, trois ou quatre déménageurs arrivera chez vous, elle sera prête à travailler dur et efficacement tout en respectant les bonnes techniques de déménagement.
 </p>
       <h3>Déménagement Commerciale</h3>
-      <p>Nous aidons les entreprises de petite taille a déménager sans une facon securitaire et efficace. Vos affaires quotidien 
-      ne tarde pas a reprendre aussi tot.</p>
+      <p>Nous aidons les entreprises de petite taille à déménager sans une façon sécuritaire et efficace. Vos transactions des affaires quotidiennes ne tardent pas à reprendre aussi tôt.
+</p>
 
       
       <h3>Contactez nous pour plus d'information!</h3>
       
       <div class="row">
-          <div class="col-md-4"><img src='../images/move3 (2).jpg'/></div>
-          <div class="col-md-4"><img src='../images/move3 (3).jpg'/></div>
-          <div class="col-md-4"><img src='../images/move3 (1).jpg'/></div>
+          <div class="col-md-4"><img src='images/move3 (2).jpg' width=100% hieight=100%/></div>
+          <div class="col-md-4"><img src='images/move3 (3).jpg' width=100% hieight=100%/></div>
+          <div class="col-md-4"><img src='images/move3 (1).jpg' width=100% hieight=100%/></div>
       </div>

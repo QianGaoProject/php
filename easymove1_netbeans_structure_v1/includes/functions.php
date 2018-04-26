@@ -21,22 +21,20 @@ function loadContent($where, $default='') {
   }
 }
 
-/**
- * function loads styles and scripts to the header 
- * from multiple files depending on page loaded
- */
 function loadHeaderContent($where, $default='') {
+  // Get the content from the url 
+  // Sanitize it for security reasons
     $filesToInclude = array();
     $filesToInclude[]='css/header.php';
-    // Get the content from the url 
-    // Sanitize it for security reasons
+//$html = include
     $content = filter_input(INPUT_GET, $where, FILTER_SANITIZE_STRING);
     $default = filter_var($default, FILTER_SANITIZE_STRING);
     // If there wasn't anything on the url, then use the default
     $content = (empty($content)) ? $default : $content;
     // If you found have content, then get it and pass it back
     if ($content) {
-	$filesToInclude[] = 'css/'.$content.'.php';
+	// sanitize the data to prevent hacking.
+        $filesToInclude[] = 'css/'.$content.'.php';
         $filesToInclude[] = 'js/'.$content.'.php';
 	return $filesToInclude;
     }
