@@ -1,93 +1,58 @@
-<?php
 
 
-$link = mysqli_connect('den1.mysql6.gear.host', 'easymovedb', 'Vi3C?b~tp9ad', 'easymovedb');
-if (!$link) {
-    echo "Error: Unable to connect to MySQL." . PHP_EOL;
-    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-    exit;
-}
-
-// TRI-STATE-FROM
-function getForm($name = "", $phone = "", $email = "", $message = "") {
-
-    $form = <<< ABC123DOREMI
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <form action="index.php?content=contact" >
-                    <div>
-                    <label for="name">Nom:</label>
-                        <input required class="form-control" type="text" placeholder="Entrer un Nom"   name="name" id="name" value="$name"><br />
-                    </div>
-
-                    <div>   
-                        <label for="phone">Téléphone:</label>
-                        <input required class="form-control" type="text" placeholder="Entrer un Téléphone"  name="phone" id="phone" value="$phone"><br />
-                    </div> 
-
-                    <div>
-                        <label for="email">Courriel:</label>
-                        <input required type="email" class="form-control" id="email" placeholder="Entrer un email" name="email" value="$email"><br />
-                    </div>
-
-                    <div>    
-                        <label for="message">Message:</label>
-                        <textarea required class="form-control" rows="5" id="message" placeholder="Entrer un message"  name="message" >$message</textarea>
-                    </div>
-                    <br/>
-              <input  type="submit" name ="submit" class="btn btn-default" value="soumettre">
-            <label name="contact" value="contact" ></label>
-            </form>
-ABC123DOREMI;
-    return $form;
-}
-
-if (isset($_GET['submit'])) {
-    // receiving a submision
-    // extract values submitted
-    $name = $_GET['name'];
-    $phone = $_GET['phone'];
-    $email = $_GET['email'];
-    $message = $_GET['message'];
 
 
-    // flag
-    $errorList = array();
-    // verify
-    if (strlen($name) < 2 || strlen($name) > 150) {
-        array_push($errorList, "Error: name must be between 2 and 150 characters long");
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>  
+<style>
+    hidden {
+        visibility: hidden;
     }
-    if (filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE || strlen($email) > 255) {
-        array_push($errorList, "Error: email is invalid.");
-    }
-    if (!preg_match("/^[0-9]{10}$/", $phone)) {
-        array_push($errorList, "Error: phone is invalid");
-    }
-    if (strlen($message) < 2 || strlen($message) > 1000) {
-        array_push($errorList, "Error: message must be between 2 and 1000 characters long");
-    }
-    //
-    if (!$errorList) {
-        // STATE 2: SUCCESSFUL SUBMISSION
-        $query = "INSERT INTO messages VALUES (NULL,NULL, '$name', '$email','$phone','$message')";
-        $result = mysqli_query($link, $query);
-        if (!$result) {
-            die("<b>SQL query error: " . mysqli_error($link) . "</b>");
-        }
+</style>
+<div data-ng-app="regApp">
+    <form  class="form-horizontal" action="index.php?content=contactServer" method="post"  data-ng-controller="regCtrl" name="regForm">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="name">Nom:</label>
+            <div class="col-sm-10">
+                <input  name="name" id="name" class="form-control" type="text" placeholder="Entrer un Nom"  required >
+            </div>
+        </div>
 
-        echo "<p>Hi $name, you are successful sent message to us ! y/o</p>";
-    } else {
-        // STATE 3: FAILED SUBMISSION
-        echo "<ul>\n";
-        foreach ($errorList as $error) {
-            echo '<li class="errorItem">' . $error . "</li>\n";
-        }
-        echo "</ul>\n";
-        echo getForm($name, $phone, $email, $message);
-    }
-} else {
-    // STATE 1: FIRST SHOW
-    echo getForm();
-}
+        <div class="form-group">  
+            <label class="control-label col-sm-2" for="phone">Téléphone:</label>
+            <div class="col-sm-10">
+                <input  name="phone" id="phone" class="form-control" type="text" placeholder="Entrer un Téléphone"   data-ng-pattern="phonePattern" data-ng-model="phone" required>
+                <span class="error" data-ng-show="regForm.phone.$error.pattern">Please match pattern ex: 555-555-5555</span>
+            </div>
+        </div> 
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Courriel:</label>
+            <div class="col-sm-10">
+                <input name="email" id="email" type="email" class="form-control" placeholder="Entrer un email"  data-ng-pattern="emailPattern" data-ng-model="email"  required>
+                <span class="error" data-ng-show="regForm.email.$error.pattern">Please match pattern ex: abc@domain.com</span>
+            </div>
+        </div>
+
+        <div class="form-group">    
+            <label class="control-label col-sm-2" for="message">Message:</label>
+            <div class="col-sm-10">
+                <textarea id="message" name="message" class="form-control" rows="5" placeholder="Entrer un message"  required ></textarea>
+            </div>
+        </div>
+        <div class="form-group">        
+            <div class="col-sm-offset-1 col-sm-11">
+                <button  type="submit" class="btn btn-default" data-ng-disabled="regForm.phone.$error.pattern || regForm.email.$error.pattern">soumettre</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    var app = angular.module('regApp', []);
+    app.controller('regCtrl', function ($scope) {
+        $scope.phonePattern = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
+        $scope.emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    });
+</script>
