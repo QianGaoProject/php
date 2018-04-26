@@ -1,0 +1,22 @@
+{
+    "first_name": "Qian",
+    "last_name": "Gao",
+    "age": 35,
+    "enrolled": true,
+    "married": null,
+    "address": {
+        "street": "123 Main St",
+        "city": "Seattle",
+        "state": "WA"
+    },
+    "phone": [
+        {
+            "type": "home",
+            "number": "4125551212"
+        },
+        {
+            "type":"mobile",
+            "number":"41255553673"
+        }
+    ]
+}
