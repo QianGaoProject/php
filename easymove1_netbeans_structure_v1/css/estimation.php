@@ -23,6 +23,26 @@
     .firstLabelAdd{
         width: 70px;
     }
+    #formAddBoxes h3{
+        width: 100%; 
+        background: lightgray; 
+        font-size: large; 
+        font-weight: bold;
+        border-color: green;
+        margin-bottom: 0;
+    }
+    .addrBox{
+        min-width: 436px;
+        border-style: dotted; 
+        border-color: lightgray; 
+        border-radius: 5px; 
+        padding: 5px; 
+        margin: 2px; 
+        background: #eee;
+    }
+    .addrBoxRow{
+        
+    }
 </style>
     
 

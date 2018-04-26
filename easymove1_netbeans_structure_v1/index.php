@@ -10,17 +10,19 @@ require_once 'includes/init.php';
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    
+    <!-- by some reason icon doesn't work-->
+    <link rel="icon" href="images/logo_new_fpic.png" type="image/png">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Easy Move - Déménagement à Montréal et Alentours</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!--Custom styles-->
-    <link rel="stylesheet" type="text/css" href="css/easymove-md.css" />
-    
-    <?php foreach (loadHeaderContent('content','home') as $file ) include_once($file) ?>
+        
+    <?php foreach (loadHeaderContent('content','home') as $file) include_once($file) ?>
 
+    
+    <!-- maybe we don't need these scripts-->
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
@@ -39,7 +41,7 @@ require_once 'includes/init.php';
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand o_brand" href="#"><img id="nav_img" src="images/logo.jpg" alt="Easy Logo" height="130" /></a>
+                <a class="navbar-brand o_brand" href="#"><img id="nav_img" src="images/logo.jpg" alt="Easy Move" height="130" /></a>
             </div>
             <div id="slogan" class="c_slogan">
                 Pour un déménagement tranquille, efficace et pas cher!
@@ -64,9 +66,8 @@ require_once 'includes/init.php';
     
     <hr style="margin:10px 0; border-color:rgb(245, 121, 33); border-width:3px" />
     
-    <div class="container jumbotron">
         <?php loadContent('content','home'); ?>
-     </div><!-- /.container -->
+    
     
      <hr style="margin:10px 0; border-color:rgb(245, 121, 33); border-width:3px" />
     
@@ -101,7 +102,7 @@ require_once 'includes/init.php';
     </footer>
     <div id="copyrights" class="container ">
         <p>
-            2018 Tous droits réservés. Easy Move&nbsp;&nbsp;
+            2018<?php if(date('Y')>2018) {echo '-'.date('Y');}?> Tous droits réservés. Easy Move&nbsp;&nbsp;
             <br />Développé par Roman Shaiko, Qian Gao, Dongfan Zhang &nbsp;&nbsp;
         </p>
     </div>

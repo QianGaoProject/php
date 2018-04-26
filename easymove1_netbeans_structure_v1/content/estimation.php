@@ -51,8 +51,8 @@
                     </div>
                 </div><br />
             </div>
-            
-            
+
+
             <div class="col-sm-6" style="max-width: 590px">
                 <div class="checkbox form-control" style="background: lightgreen;">
                     <label style="font-weight: bold"><input style="width: 14px; height: 14px; "  type="checkbox" value="" 
@@ -66,10 +66,12 @@
                                name="workers" id="workers">
                     </div>
 
-                    <h3 class="form-control" style="width: 100%; background: lightgray; font-size: large; font-weight: bold">Des adresses</h3>
+                    <h3 class="form-control" >Des adresses</h3>
 
-                    <div style="border-style: dotted; border-color: lightgray; border-radius: 5px; padding: 5px; margin: 2px; background: #eee" >
+                    <div class="addrBox">
                         <h5 style="font-weight: bold; font-size: large">1. Adresse actuelle</h5>
+
+
                         <div style="margin-bottom: 10px">
                             <label class="firstLabelAdd"  style="display: inline-block" for="adrAct">Adresse: </label>
                             <input style="display: inline; width: 330px" class="form-control" type="text" name="adrAct" id="adrAct"><br />
@@ -85,7 +87,7 @@
                                 <label>Escalier:&nbsp;&nbsp;<input style="display: inline; width:16px; height: 16px;" 
                                                                    class="checkbox" type="checkbox" value="" name="stairsAct" id="stairsAct"></label>
                                 <label>&nbsp;&nbsp;&nbsp;&nbsp;Ascenseur:&nbsp;&nbsp;<input style="display: inline; width:16px; height: 16px;" 
-                                                                   class="checkbox" type="checkbox" value="" name="elevatorAct" id="elevatorAct"></label>
+                                                                                            class="checkbox" type="checkbox" value="" name="elevatorAct" id="elevatorAct"></label>
                             </div>
                         </div>
                         <div style="display: inline-block; min-width: 295px; margin-bottom:5px">
@@ -116,12 +118,12 @@
                             <label style="display: inline-block" for="zipAct"></label>
                             <input style="display: inline; width: 105px" placeholder="Code postal" class="form-control" type="text" name="zipAct" id="zipAct"><br />
                         </div>
-                        
+
                     </div>  
                     <!--end of actual address-->
-                    
+
                     <!--Destination Addresse-->
-                    <div style="border-style: dotted; border-color: lightgray; border-radius: 5px; padding: 5px; margin: 10px 2px 2px 2px; background: #eee"  >
+                    <div class="addrBox">
                         <h5 style="font-weight: bold; font-size: large">2. Destination</h5>
                         <div style="margin-bottom: 10px">
                             <label class="firstLabelAdd"  style="display: inline-block" for="adrDest">Adresse: </label>
@@ -138,7 +140,7 @@
                                 <label>Escalier:&nbsp;&nbsp;<input style="display: inline; width:16px; height: 16px;" 
                                                                    class="checkbox" type="checkbox" value="" name="stairsDest" id="stairsDest"></label>
                                 <label>&nbsp;&nbsp;&nbsp;&nbsp;Ascenseur:&nbsp;&nbsp;<input style="display: inline; width:16px; height: 16px;" 
-                                                                   class="checkbox" type="checkbox" value="" name="elevatorDest" id="elevatorDest"></label>
+                                                                                            class="checkbox" type="checkbox" value="" name="elevatorDest" id="elevatorDest"></label>
                             </div>
                         </div>
                         <div style="display: inline-block; min-width: 295px; margin-bottom:5px">
@@ -169,13 +171,13 @@
                             <label style="display: inline-block" for="zipDest"></label>
                             <input style="display: inline; width: 105px" placeholder="Code postal" class="form-control" type="text" name="zipDest" id="zipDest"><br />
                         </div>
-                        
+
                     </div>  
                     <!--end of destination address-->
 
 
                     <!--Intermediate Addresse-->
-                    <div style="border-style: dotted; border-color: lightgray; border-radius: 5px; padding: 5px; margin: 10px 2px 2px 2px; background: #eee"  >
+                    <div class="addrBox"  >
                         <h5 style="font-weight: bold; font-size: large">3.Adresse intermédiaire</h5>
                         <div style="margin-bottom: 10px">
                             <label class="firstLabelAdd"  style="display: inline-block" for="adrInt">Adresse: </label>
@@ -192,7 +194,7 @@
                                 <label>Escalier:&nbsp;&nbsp;<input style="display: inline; width:16px; height: 16px;" 
                                                                    class="checkbox" type="checkbox" value="" name="stairsInt" id="stairsInt"></label>
                                 <label>&nbsp;&nbsp;&nbsp;&nbsp;Ascenseur:&nbsp;&nbsp;<input style="display: inline; width:16px; height: 16px;" 
-                                                                   class="checkbox" type="checkbox" value="" name="elevatorInt" id="elevatorInt"></label>
+                                                                                            class="checkbox" type="checkbox" value="" name="elevatorInt" id="elevatorInt"></label>
                             </div>
                         </div>
                         <div style="display: inline-block; min-width: 295px; margin-bottom:5px">
@@ -223,11 +225,11 @@
                             <label style="display: inline-block" for="zipInt"></label>
                             <input style="display: inline; width: 105px" placeholder="Code postal" class="form-control" type="text" name="zipInt" id="zipInt"><br />
                         </div>
-                        
+
                     </div>  
                     <!--end of intermediate address-->
-                    <h3 class="form-control" style="width: 100%; background: lightgray; font-size: large; font-weight: bold">Description des objets à déplacer</h3>
-                    <div style="border-style: dotted; border-color: lightgray; border-radius: 5px; padding: 5px; margin: 10px 2px 2px 2px; background: #eee"  >
+                    <h3 class="form-control" >Description des objets à déplacer</h3>
+                    <div style="border-style: dotted; border-color: lightgray; border-radius: 5px; padding: 5px; margin: 5px 2px 2px 2px; background: #eee"  >
                         <div style="display: inline-block;">
                             <div style="display: inline-block; margin: 5px 0">
                                 <label for="boxes" style="display: inline-block; width: 60px">Boites:</label>
@@ -245,7 +247,7 @@
                             <input style="display: inline-block; width: 70px;" class="form-control" type="number" min="0" max="999"  
                                    name="sofas" id="sofas">
                         </div>
-                        
+
                         <div style="display: inline-block; margin: 5px 0">
                             <label for="tables" style="display: inline-block; width: 60px">Tables:</label>
                             <input style="display: inline-block; width: 70px;" class="form-control" type="number" min="0" max="999"  
@@ -269,17 +271,23 @@
                             <input style="display: inline-block; width: 70px;" class="form-control" type="number" min="0" max="999"  
                                    name="wds" id="wds">
                         </div>
-                        
-                        <div style="margin-bottom: 5px; display: inline-block">
-                            <textarea id="message" name="message" class="form-control" cols="61" rows="4" style="display: inline-block" placeholder="Message"></textarea>
-                        </div>
-                        
-                        <div>
-                        <button type="submit" class="btn btn-default">Envoyer</button>
-                        </div>
-                        
                     </div>
-                    
+                    <!--                    end of description-->
+
+                    <div style="margin: 10px 0; display: inline-block">
+                        <textarea id="message" name="message" class="form-control" cols="73" rows="4" style="display: inline-block" placeholder="Message"></textarea>
+                    </div>
+                    <div>
+                        <label style="margin-bottom: 10px" class="btn btn-default btn-file">
+                            Ajouter des photos ... <input class="form-control" type="file" style="display: none;">
+                        </label>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-default">Envoyer</button>
+                    </div>
+
+
+
                 </div>
 
             </div>
