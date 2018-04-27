@@ -26,7 +26,7 @@ require_once 'includes/init.php';
 
 </head>
 
-<body>
+<body onload="setActiveMenu(<?php echo '\''.getCurrentPage('content').'\'';?>)">
 
     <nav class="navbar navbar-inverse o_navbar">
         <div class="container">
@@ -47,12 +47,12 @@ require_once 'includes/init.php';
             <div class="collapse navbar-collapse">
                 
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="indexen.php?content=home">Home</a></li>
-                   <li><a href="indexen.php?content=move">Move</a></li>
-                    <li><a href="indexen.php?content=rates">Rates</a></li>
-                    <li><a href="indexen.php?content=services">Services</a></li>
-                    <li><a href="indexen.php?content=about">About</a></li>
-                    <li><a href="indexen.php?content=contact">Contact</a></li>
+                    <li id="homeM"><a href="indexen.php?content=home">Home</a></li>
+                    <li id="moveM"><a href="indexen.php?content=move">Move</a></li>
+                    <li id="ratesM"><a href="indexen.php?content=rates">Rates</a></li>
+                    <li id="servicesM"><a href="indexen.php?content=services">Services</a></li>
+                    <li id="aboutM"><a href="indexen.php?content=about">About</a></li>
+                    <li id="contactM"><a href="indexen.php?content=contact">Contact</a></li>
                     <li><a href ="index.php">French</a> </li>
                 </ul>
                 
@@ -90,12 +90,12 @@ require_once 'includes/init.php';
             <div id="footer-menu" class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="index.php?content=home">Home</a></li>
-                    <li><a href="index.php?content=move">Move</a></li>
-                    <li><a href="index.php?content=rate">Rates</a></li>
-                    <li><a href="index.php?content=services">Services</a></li>
-                    <li><a href="index.php?content=about">About</a></li>
-                    <li><a href="index.php?content=contact">Contact</a></li>
+                    <li id="homeMf"><a href="indexen.php?content=home">Home</a></li>
+                    <li id="moveMf"><a href="indexen.php?content=move">Move</a></li>
+                    <li id="ratesMf"><a href="indexen.php?content=rates">Rates</a></li>
+                    <li id="servicesMf"><a href="indexen.php?content=services">Services</a></li>
+                    <li id="aboutMf"><a href="indexen.php?content=about">About</a></li>
+                    <li id="contactMf"><a href="indexen.php?content=contact">Contact</a></li>
                 </ul>
             </div>
             <div id="footer-others">

@@ -5,6 +5,14 @@
  * @param $default
  */
 
+/**
+ * function returns current page filename to set a menu active
+ */
+function getCurrentPage($where){
+    $currentPage = filter_input(INPUT_GET, $where, FILTER_SANITIZE_STRING);
+    $currentPage = (empty($currentPage)) ? 'home' : $currentPage;
+    return $currentPage;
+}
 
 function loadContent($where, $default='') {
   // Get the content from the url 
@@ -26,6 +34,7 @@ function loadHeaderContent($where, $default='') {
   // Sanitize it for security reasons
     $filesToInclude = array();
     $filesToInclude[]='css/header.php';
+    $filesToInclude[]='js/header.php';
 //$html = include
     $content = filter_input(INPUT_GET, $where, FILTER_SANITIZE_STRING);
     $default = filter_var($default, FILTER_SANITIZE_STRING);
