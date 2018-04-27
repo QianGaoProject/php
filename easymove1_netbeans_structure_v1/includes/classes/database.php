@@ -1,16 +1,42 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*one point entry to access database
 
 /**
  * Description of database
  *
  * @author dongf
  */
-class database {
-    //put your code here
+class Database {
+   
+    private static $_hostName = "den1.mysql6.gear.host";
+    private static $_dbUser = "easymovedb";  
+    private static $_dbPass = "Vi3C?b~tp9ad"; 
+    private static $_dbname= "easymovedb"; 
+    
+    private static $_connection = NULL;
+    
+    
+    //to prevent making object for this class, make a private construct
+    private function __construct() {
+        
+    }
+    
+    //a function to get the connection
+    public static function getConnection() {
+        if(!self::$_connection){
+        self::$_connection = new mysqli(self::$_hostName, self::$_dbUser, self::$_dbPass,self::$_dbname);
+        if(self::$_connection->connect_error) {
+            die('Connect Error: ' . self::$_connection->connect_error);
+            }   
+        }
+        return self::$_connection;  
+        
+        }
+        
+ 
+
 }
+
+
+

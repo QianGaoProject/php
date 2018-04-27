@@ -1,13 +1,122 @@
+<?php
+// define variables and set to empty values
+$nameErr = $emailErr = $phoneErr = $moveDateErr = "";
+$name = $email = $phone = $moveDate = $fromCity= $toCity = "";
+$message="";
+$stmt="";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["name"])) {
+    $nameErr = "Name is required";
+    
+  } else {
+    $name = test_input($_POST["name"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+      $nameErr = "Only letters and white space allowed"; 
+     
+    }
+  }
+  
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else {
+    $email = test_input($_POST["email"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format"; 
+    }
+  }
+    
+  if (empty($_POST["phone"])) {
+    $phoneErr = "phone is required";
+  } else {
+    $phone = test_input($_POST["phone"]);
+    // 
+    if (!preg_match("/^[0-9 ]{10}$/",$phone)) {
+      $phoneErr = "please enter valid phone number"; 
+    }
+  }
+
+  if (empty($_POST["moveDate"])) {
+    $moveDateErr="moving date is required";
+  } else {
+    $moveDate = test_input($_POST["moveDate"]);
+    $moveDateCompare = new DateTime($moveDate);
+    $today = new DateTime();
+    if($moveDateCompare<$today){
+        $moveDateErr="you must enter a future date";
+    }
+  }
+
+$fromCity = test_input($_POST["fromCity"]);
+$toCity=test_input($_POST["toCity"]);
+
+
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+//construct obj
+//$obj = new Estimation($name, $phone, $email, $moveDate, $fromCity, $toCity);
+// save obj to database using funtion in Estimation class
+//$obj->addEstimationSmall();
+
+// check all required field are not empty and no errors
+if(!empty($name)&&!empty($phone)&&!empty($email)&&!empty($moveDate) && empty($nameErr)
+        && empty($emailErr) && empty($phoneErr) && empty($moveDateErr)){
+     
+ $connection = Database::getConnection();
+ $stmt = $connection->prepare(
+            "INSERT INTO estimations (name, phone, email, moveDate, fromCity, toCity) values (?,?,?,?,?,?)"
+            );
+    if($stmt){
+        $stmt->bind_param("ssssss", $name, $phone, $email, $moveDate, $fromCity, $toCity);
+            $result = $stmt->execute();
+            if($result){
+                $message ="you have sent us an estimation request, we will get back to you asap.";
+            } else{
+                $message ="estimation request did not send";
+            }
+    }
+}
+
+
+?>
 
 
     <h1>Estimation pour déménagement</h1>
+   
+    <h4> <?php echo $message; ?></h4> <!-- this message, maybe need to create a page and redirect-->
+    <!--these below for testing purpose, should be removed after-->
+    <p>your input</p>
+    <h4><?php echo $moveDate; ?></h4>
+    <h4><?php echo $name; ?></h4>
+    <h4><?php echo $phone; ?></h4>
+    <h4><?php echo $email; ?></h4>
+   <h4><?php echo $fromCity; ?></h4>
+     <h4><?php echo $toCity; ?></h4>
+     <p>error message</p>
+     <?php echo $nameErr;?>
+     <?php echo $emailErr;?>
+     <?php echo $phoneErr; ?>
+     <?php echo $moveDateErr; ?>
+        <p>stmt</p>
+        <h4><?php var_dump($stmt);?></h4>
+    
+     
     <p>
         Nous vous offrons plusieurs choix pour vous informer du coût de votre déménagement :<br />
         1 – Par téléphone : appelez-nous au 450-668-5203 et un agent évaluera avec vous le coût de votre déménagement, quitte à vous rendre visite si nécessaire;<br />
         2 – Pour plus de précision et de certitude, remplissez le formulaire. Nous pourrons alors vous contacter avec un devis dès plus précis possible selon l’information recu de votre part.
     </p>
     
-    <form id="formEstimation">
+    <form id="formEstimation" action="" method="POST">
         <div class="row">
             <div class="col-sm-6">
                 <h2 style="margin-top: 10px;margin-bottom: 20px;">Vos coordonnées</h2>
@@ -15,39 +124,51 @@
 
                     <div>
                         <label for="name">Nom<span class="required">*</span>:</label>
-                        <input required="required" class="form-control" type="text" name="name" id="name"><br />
+                        <input class="form-control" type="text" name="name" id="name" value="<?php if(isset($_POST['name']))
+                        {echo htmlentities($_POST['name']);}?>"><br />
+                        <span style="color: red"><?php echo $nameErr;?></span>                     
                     </div>
 
                     <div>   
                         <label for="phone">Téléphone<span class="required">*</span>:</label>
-                        <input required="required" class="form-control" type="text" name="phone" id="phone"><br />
+                        <input  class="form-control" type="text" name="phone" id="phone" value="<?php if(isset($_POST['phone']))
+                        {echo htmlentities($_POST['phone']);}?>"><br />
+                        <span style="color: red"><?php echo $phoneErr;?></span>  
                     </div> 
 
                     <div>
                         <label for="email">Courriel<span class="required">*</span>:</label>
-                        <input required="required" type="email" class="form-control" id="email" placeholder="Entrer un email" name="email"><br />
+                        <input type="email" class="form-control" id="email" placeholder="Entrer un email" name="email"
+                               value="<?php if(isset($_POST['email']))
+                        {echo htmlentities($_POST['email']);}?>"><br />
+                        <span style="color: red"><?php echo $emailErr;?></span>  
                     </div>
 
                     <div>    
                         <label for="moveDate">Date<span class="required">*</span>:</label>
-                        <input required="required" class="form-control" type="date" name="moveDate" id="moveDate"><br />
+                        <input  class="form-control" type="date" name="moveDate" id="moveDate" value="<?php if(isset($_POST['moveDate']))
+                        {echo htmlentities($_POST['moveDate']);}?>"><br />
+                        <span style="color: red"><?php echo $moveDateErr;?></span>  
+                        
                     </div>
 
 
                     <div>
-                        <label for="cityDepSimple">Ville de depart:</label>
-                        <input class="form-control" type="text" name="cityDep" id="cityDep"><br />
+                        <label for="fromCity">Ville de depart:</label>
+                        <input class="form-control" type="text" name="fromCity" id="fromCity" value="<?php if(isset($_POST['fromCity']))
+                        {echo htmlentities($_POST['fromCity']);}?>"><br />
                     </div>
 
                     <div>
-                        <label for="cityDepSimple">Ville de destination:</label>
-                        <input class="form-control" type="text" name="cityDep" id="cityDep"><br />
+                        <label for="toCity">Ville de destination:</label>
+                        <input class="form-control" type="text" name="toCity" id="toCity" value="<?php if(isset($_POST['toCity']))
+                        {echo htmlentities($_POST['toCity']);}?>"><br />
                     </div>
                     <div>
                         <p><span class="required">*</span> - les champs obligatoires</p>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-default">Envoyer</button>
+                        <input type="submit" class="btn btn-default" name="submit" value="Submit">Envoyer
                     </div>
                 </div><br />
             </div>
