@@ -54,8 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitsmall'])) {
     } else {
         $name = test_input($_POST["name"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
-            $nameErr = "Only letters and white space allowed";
+        if (!preg_match("/^[a-zA-Z ]{2,48}$/", $name)) {
+            $nameErr = "moins de 50 characters et espace";
         }
     }
 
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitsmall'])) {
         $phone = test_input($_POST["phone"]);
         // 
         if (!preg_match("/^[0-9]{7,12}$/", $phone)) {
-            $phoneErr = "please enter valid phone number";
+            $phoneErr = "9 a 12 numéros";
         }
     }
 
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitsmall'])) {
         $moveDateCompare = new DateTime($moveDate);
         $today = new DateTime();
         if ($moveDateCompare < $today) {
-            $moveDateErr = "you must enter a future date";
+            $moveDateErr = "Vous devez fournir une date ulterieure";
         }
     }
 
@@ -139,8 +139,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitbig'])) {
     } else {
         $name = test_input($_POST["name"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
-            $nameErr = "Only letters and white space allowed";
+        if (!preg_match("/^[a-zA-Z ]{2,48}$/", $name)) {
+            $nameErr = "moins de 50 characteres et espace";
         }
     }
 
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitbig'])) {
         $email = test_input($_POST["email"]);
         // check if e-mail address is well-formed
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $emailErr = "Invalid email format";
+            $emailErr = "le format de couriel n'est pas valid";
         }
     }
 
@@ -159,8 +159,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitbig'])) {
     } else {
         $phone = test_input($_POST["phone"]);
         // 
-        if (!preg_match("/^[0-9 ]{10}$/", $phone)) {
-            $phoneErr = "please enter valid phone number";
+        if (!preg_match("/^[0-9]{7,12}$/", $phone)) {
+            $phoneErr = "7 a 12 numéros";
         }
     }
 
@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitbig'])) {
         $moveDateCompare = new DateTime($moveDate);
         $today = new DateTime();
         if ($moveDateCompare < $today) {
-            $moveDateErr = "you must enter a future date";
+            $moveDateErr = "Vous devez founir une date ultérieure";
         }
     }
 
