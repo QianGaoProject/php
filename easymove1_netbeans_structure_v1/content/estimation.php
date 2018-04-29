@@ -26,7 +26,7 @@ $floorInt = 1;
 $elevatorInt = 0;
 $stairsInt = 0;
 $cityInt = "";
-$provAct = "QC";
+$provInt = "QC";
 $zipInt = "";
 $zipIntErr = "";
 $boxes = $beds = $sofas = $tables = $desks = $chairs = $wds = 0;

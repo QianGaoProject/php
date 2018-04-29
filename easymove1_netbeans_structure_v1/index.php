@@ -118,7 +118,17 @@ require_once 'includes/init.php';
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-
+<script>
+$(function() {
+    $('#addInfo').click(function() {
+        var cb = $('#addInfo').is(':checked');
+        $('#workers, #addrAct, #floorAct,#elevatorAct,#stairsAct,#cityAct,#provAct,#zipAct,\n\
+        #addrDest, #floorDest, #elevatorDest,#stairsDest,#cityDest,#provDest,#zipDest,\n\
+        #addrInt, #floorInt,#elevatorInt,#stairsInt,#cityInt,#provInt, #zipInt,\n\
+        #boxes, #beds, #sofas, #tables, #desks, #chairs, #wds, #message').prop('disabled', !(cb));
+         
+    });
+});
+</script>
 </body>
 </html>
