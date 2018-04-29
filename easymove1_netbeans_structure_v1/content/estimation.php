@@ -33,6 +33,9 @@ $boxes = $beds = $sofas = $tables = $desks = $chairs = $wds = 0;
 $message = "";
 $messageB = "";
 $stmt = "";
+$todayB = new DateTime();
+$todayC =$todayB ->format('Y-m-d');
+$todayD = '"'.$todayC.'"';
 
 function test_input($data) {
     $data = trim($data);
@@ -372,7 +375,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitbig'])) {
 
 
 <h1>Estimation pour déménagement</h1>
-
 <!--<h4> <?php echo $messageB; ?></h4>
 <h4><?php echo $insertId; ?></h4>
 <h4><?php echo $page; ?></h4>
@@ -391,14 +393,15 @@ these below for testing purpose, should be removed after
 <p>stmt</p>
 <h4><?php var_dump($stmt); ?></h4>-->
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>  
 <p>
     Nous vous offrons plusieurs choix pour vous informer du coût de votre déménagement :<br />
     1 – Par téléphone : appelez-nous au 450-668-5203 et un agent évaluera avec vous le coût de votre déménagement, quitte à vous rendre visite si nécessaire;<br />
     2 – Pour plus de précision et de certitude, remplissez le formulaire. Nous pourrons alors vous contacter avec un devis dès plus précis possible selon l’information recu de votre part.
 </p>
 
-<form id="formEstimation" action="" method="POST">
+<div data-ng-app="regApp">
+    <form id="formEstimation" action="" method="POST" data-ng-controller="regCtrl" name="regForm">
     <div class="row">
         <div class="col-sm-6">
             <h2 style="margin-top: 10px;margin-bottom: 20px;">Vos coordonnées</h2>
@@ -406,38 +409,44 @@ these below for testing purpose, should be removed after
 
                 <div>
                     <label for="name">Nom<span class="required">*</span>:</label>
-                    <input class="form-control" type="text" name="name" id="name" value="<?php
+                    <input class="form-control" type="text" name="name" id="name" placeholder="Entrer un nom" data-ng-pattern="namePattern"
+                            data-ng-model="name" value="<?php
 if (isset($_POST['name'])) {
     echo htmlentities($_POST['name']);
 }
 ?>"><br />
-                    <span style="color: red"><?php echo $nameErr; ?></span>                     
+                    <span style="color: red"><?php echo $nameErr; ?></span>
+                     <span class="error" data-ng-show="regForm.name.$error.pattern">characters et espaces, longeur moins de 50</span>
                 </div>
 
                 <div>   
                     <label for="phone">Téléphone<span class="required">*</span>:</label>
-                    <input  class="form-control" type="text" name="phone" id="phone" value="<?php
+                    <input  class="form-control" type="text" name="phone" id="phone" placeholder="Entrer un numero de télephone" data-ng-pattern="phonePattern"
+                            data-ng-model="phone" value="<?php
                     if (isset($_POST['phone'])) {
                         echo htmlentities($_POST['phone']);
                     }
                     ?>"><br />
+                    <br/>
+                    <span class="error" data-ng-show="regForm.phone.$error.pattern">7 - 12 numéros</span>
                     <span style="color: red"><?php echo $phoneErr; ?></span>  
                 </div> 
 
                 <div>
                     <label for="email">Courriel<span class="required">*</span>:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Entrer un email" name="email"
+                    <input type="email" class="form-control" id="email" placeholder="Entrer un email" name="email" data-ng-pattern="emailPattern" data-ng-model="email"
                            value="<?php
                            if (isset($_POST['email'])) {
                                echo htmlentities($_POST['email']);
                            }
                            ?>"><br />
+                     <span class="error" data-ng-show="regForm.email.$error.pattern">Please match pattern ex: abc@domain.com</span>
                     <span style="color: red"><?php echo $emailErr; ?></span>  
                 </div>
 
                 <div>    
                     <label for="moveDate">Date<span class="required">*</span>:</label>
-                    <input  class="form-control" type="date" name="moveDate" id="moveDate" value="<?php
+                    <input  class="form-control" type="date" name="moveDate" id="moveDate"  min=<?php echo $todayD;?> value="<?php
                             if (isset($_POST['moveDate'])) {
                                 echo htmlentities($_POST['moveDate']);
                             }
@@ -552,11 +561,12 @@ if (isset($_POST['name'])) {
                     </div>
                     <div style="margin-bottom: 5px; display: inline-block">
                         <label style="display: inline-block" for="zipAct"></label>
-                        <input style="display: inline; width: 105px" placeholder="Code postal" class="form-control" type="text" name="zipAct" id="zipAct" value="<?php
+                        <input style="display: inline; width: 105px" placeholder="Code postal" class="form-control" type="text" name="zipAct" id="zipAct" data-ng-pattern="zipPattern" data-ng-model="zip" value="<?php
                                if (isset($_POST['zipAct'])) {
                                    echo htmlentities($_POST['zipAct']);
                                }
-                            ?>"><span style="color: red"><?php echo $zipActErr; ?></span><br />
+                            ?>"><span class="error" data-ng-show="regForm.zip.$error.pattern">format par exemple: H8T3G6</span>
+                        <span style="color: red"><?php echo $zipActErr; ?></span><br />
 
                     </div>
 
@@ -802,5 +812,37 @@ if (isset($_POST['message'])) {
 
     </div>
 </form>
+</div>
+
+<script>
+    var app = angular.module('regApp', []);
+    app.controller('regCtrl', function ($scope) {
+        $scope.namePattern = /^[a-zA-Z ]{2,48}$/;
+        $scope.phonePattern = /^[0-9]{7,12}$/;
+        $scope.emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+        $scope.zipPattern = /^([a-ceghj-npr-tv-z]){1}[0-9]{1}[a-ceghj-npr-tv-z]{1}[0-9]{1}[a-ceghj-npr-tv-z]{1}[0-9]{1}$/;
+        
+    });
+    
+</script>
+<script>
+    $(document).ready(function () {
+    $("#addInfo").prop("checked", false);
+});
+</script>
+<script>
+     
+$(function() {
+    $('#addInfo').click(function() {
+        var cb = $('#addInfo').is(':checked');
+        $('#workers, #addrAct, #floorAct,#elevatorAct,#stairsAct,#cityAct,#provAct,#zipAct,\n\
+        #addrDest, #floorDest, #elevatorDest,#stairsDest,#cityDest,#provDest,#zipDest,\n\
+        #addrInt, #floorInt,#elevatorInt,#stairsInt,#cityInt,#provInt, #zipInt,\n\
+        #boxes, #beds, #sofas, #tables, #desks, #chairs, #wds, #message').prop('disabled', !(cb));
+         
+    });
+});
+</script>
+
 
 
