@@ -484,7 +484,7 @@ if (isset($_POST['name'])) {
 
         <div class="col-sm-6" style="max-width: 590px">
             <div class="checkbox form-control" style="background: lightgreen;">
-                <label style="font-weight: bold"><input style="width: 14px; height: 14px; "  type="checkbox" value="" 
+                <label style="font-weight: bold"><input style="width: 14px; height: 14px; "  type="checkbox"  checked="false" value="" 
                                                         name="addInfo" id="addInfo"> Information supplémentaire</label>
             </div>
 
@@ -825,9 +825,16 @@ if (isset($_POST['message'])) {
     });
     
 </script>
+
 <script>
-    $(document).ready(function () {
-    $("#addInfo").prop("checked", false);
+    $(document).ready(function(){
+        $('input:checkbox[name=addInfo]').attr('checked',false);
+       if($('#addInfo').is(':checked')==false){
+            $('#workers, #addrAct, #floorAct,#elevatorAct,#stairsAct,#cityAct,#provAct,#zipAct,\n\
+        #addrDest, #floorDest, #elevatorDest,#stairsDest,#cityDest,#provDest,#zipDest,\n\
+        #addrInt, #floorInt,#elevatorInt,#stairsInt,#cityInt,#provInt, #zipInt,\n\
+        #boxes, #beds, #sofas, #tables, #desks, #chairs, #wds, #message').prop('disabled', true);
+        }
 });
 </script>
 <script>
