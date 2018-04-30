@@ -74,7 +74,9 @@ require_once 'includes/init.php';
                     <li id="servicesM"><a href="index.php?content=services">Services</a></li>
                     <li id="aboutM"><a href="index.php?content=about">À propos</a></li>
                     <li id="contactM"><a href="index.php?content=contact">Contact</a></li>
+                    
                 </ul>
+               <a href="index.php?content=login" class="navbar-right language"> <button id="adminlogin">Admin Session</button>></a>
                 <a href="indexen.php" class="navbar-right language">
                     <button type="button">
                         EN </button> 
